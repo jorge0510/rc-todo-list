@@ -64,3 +64,8 @@ li > div {
   gap:0;
   padding-left: 20px;
 }
+
+.completed {
+  display: none;
+  position: hidden;
+}
