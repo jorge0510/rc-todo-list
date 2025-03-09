@@ -7,6 +7,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /******************************************
@@ -19,7 +20,9 @@
 /* ADDITIONAL STYLES
 /*******************************************/
 body {
-  background: #282828;
+  background: url('../img/background.png');
+  background-repeat: repeat-y;
+  background-position: center;
 }
 main {
   min-height: 250px;
@@ -32,40 +35,77 @@ form {
   display: flex;
   flex-direction: column;
   width: 300px;
-  background: #505050;
+  background: white;
+  border: 2px solid rgba(0,0,255,0.1);
   padding: 20px;
   margin-top: 30px;
+  margin-bottom: 10px;
   border-radius: 5px;
 }
-label {
+form > div {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  align-content: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+button {
+  background: skyblue;
   color: white;
-  margin-top: 20px;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+label {
+  color: #282828;
+}
+input[type=text] {
+  border: 2px solid rgba(0,0,255,0.1);
+  height: 20px;
+}
+
+input[type=submit] {
+  cursor: pointer;
 }
 
 ul {
   min-height: 200px;
   width: 300px;
+  height: 100vh;
+  overflow-y: scroll;
 }
 
 li {
   list-style: none;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 5px;
-  background: #606060;
-  border-radius: 5px;
-  margin-top: 15px;
+  padding: 5px 0;
+  cursor: pointer;
+  margin-top: -6.23px;
+}
+
+h5 {
+  font-weight: 300;
+  margin-left: 8px;
 }
 
 li > div {
-  display: flex;
-  flex-direction: column;
-  gap:0;
-  padding-left: 20px;
+  display: flex; 
+  gap: 1px;
 }
 
 .completed {
-  display: none;
-  position: hidden;
+  text-decoration: line-through;
+}
+
+.delete {
+  background: none;
+  border: none;
+  color: rgba(0,0,255,0.1);
 }

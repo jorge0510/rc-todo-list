@@ -1,52 +1,45 @@
-class todo {
-    constructor(title, description) {
-        this.title = title;
-        this.description = description;
-        this.isDone = false;
-        this.dateStamp = new Date();
-    }
+//select parent nodeElement
+const ul = document.querySelector('ul');
 
-    onComplete() {
-        this.isDone = true;
-    }
-}
-
-const todoArray = [];
-
-document.querySelector('button').addEventListener('click', (e) => {
-
-    console.log(e)
+const onSubmit = (e) => {
     //prevent default of form
     e.preventDefault();
-
     //get input values
     const title = document.querySelector('#title').value;
-    const description = document.querySelector('#description').value;
-
-    //create new todo object
-    const newTodo = new todo(title, description);
-
-    //select parent of nodeElement
-    const ul = document.querySelector('ul');
-
+    if (title === "") {
+        alert("no data!");
+        return;
+    }    
     //create new nodeElement
     const li = document.createElement('li');
+    const dateId = (new Date()).toISOString();
+
+    li.id = dateId;
+    // li.querySelector(`#${dateId}`);
 
     li.innerHTML = `
-            <input type="radio">
             <div>
-                <span>${newTodo.dateStamp.toLocaleDateString()}</span>
-                <h5>${newTodo.title}</h5>
-                <p>${newTodo.description}</p>
-                <button class="precomplete">Completed</button>
+                <input type="radio" id="radio#${dateId}">
+                <h5 id="title#${dateId}">${title}</h5>
             </div>
+            <input type="submit" class="delete" id="delete#${dateId}" value="x">
+            
         `;
 
-   todoArray.push(newTodo);
    ul.appendChild(li);
-})
+   document.querySelector('#title').value = "";
+   li.addEventListener('click', onTouch);
+}
 
-document.getElementsByClassName('precomplete').addEventListener('click', completeTask)
-const completeTask = (e) => {
-    console.log(e.target);
+//event bubulling click on element that wasnt there at rendering
+document.querySelector('button').addEventListener('click', onSubmit);
+
+
+
+const onTouch = (e) => {
+    if(e.target.type === "radio") {
+        e.target.parentNode.children[1].classList.add("completed");
+    } else if (e.target.type === "submit") {
+        e.target.parentNode.remove();
+    }
 }
